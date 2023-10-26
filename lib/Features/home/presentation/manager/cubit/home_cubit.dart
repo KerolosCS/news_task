@@ -17,8 +17,11 @@ class HomeCubit extends Cubit<HomeState> {
       (value) {
         model = value;
         model?.articles?.forEach((element) {
-          news.add(element);
-        });
+            if (element.urlToImage != null) {
+              news.add(element);
+            }
+          },
+        );
         emit(NewsSuccess());
       },
     ).catchError((e) {
